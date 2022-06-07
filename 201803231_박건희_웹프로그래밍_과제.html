@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--Chapter2 웹페이지 타이틀 달기-->
+	<title>(주)달콤소프트에 대해 소개하는 웹페이지 작성</title> 
+	<!-- 레이아웃 p293, p361 참고
+		반응형웹:chap11_p459 참고
+		내용은 http://company.nexon.com/ 참고
+	-->
+	<style>
+		body { font-family: 'Malgun Gothic', 'NanumGothic', 'dotum', '돋움', sans-serif;}
+		a {	text-decoration : none;}
+		ul { list-style: none; }
+		#wrap { width: 1190px; margin: 0 auto;}
+		/* 헤더 */
+		#header {
+			display: block;
+			position: relative;
+			left: 0;
+			top: 0;
+			width : 100%;
+			height: 50px;
+			z-index: 999;
+		}
+		#header > div.logo {
+			display: block;
+			position: absolute;
+			left: 0;
+			top: 10px;
+			width: 215px;
+		}
+		/* 대표이미지 */
+		#banner { 
+			width: 100%;
+			margin: 0 auto;
+			padding: 80px 0;
+			background-image: url('https://cdn.pixabay.com/photo/2017/04/10/16/55/live-music-2219036_960_720.jpg'); 
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-size: cover;
+		}
+		#banner h1 {
+			font-size: 5.5em;
+			color:white;
+			text-shadow: 0 0 10px black;
+			text-align: center;
+		}
+		/* 메뉴 */
+		#nav { background-color:darkslateblue; overflow:hidden; margin-top: 10px; margin-bottom: 10px;}
+		#nav > ul.left { padding:0; margin:0 0 0 10px; overflow:hidden; float:left;  }
+		#nav > ul.right{ padding:0; margin:0 10px 0 0; overflow:hidden; float:right; }
+		#nav li { display: inline-block; }
+		#nav a {
+			margin:0;
+			line-height: 40px;
+			color: white;
+			font-size: 15px; }
+		#nav > ul.left a { font-weight: bolder; padding: 0 55px 0 50px; border-right: 1px solid #251f30;}
+		#nav > ul.right a {	font-weight: bolder; padding: 0 45px 0 50px; border-left: 1px solid #251f30;}
+		/* 메뉴선택시 나타낼 세부카테고리 및 콘텐츠 */
+		#contents_wrap {overflow: hidden; background-color:#dcdceb;}
+		#tabBar { /*220 220 235*/
+			float: left;
+			width:250px; 
+			font-size: 20px; font-weight: bold;
+			}
+		.tabContent ul { line-height:46px; list-style-position: inside; list-style-type:circle; }
+		#G>ul, #H>ul, #F>ul { list-style-type: "\266a\20"; }
+		.tabContent ul > a { color: #ffffff; text-shadow: 0 0 2px black; line-height: 80px; 
+			border-bottom: 2px solid #ffffff;}
+		.tabContent li { margin-left: 20px; }
+		.tabContent li:hover { margin-left: 30px;}
+		.tabContent li > a { 
+			padding: 0;
+			font-weight: bold; font-size: 15px;
+			color:#424242; 
+		}
+		#section {
+			background-color: white;
+			border-left : 1px solid lightgray;
+			min-height: 400px;
+			margin: 0 0 0 230px; padding-left:20px; width: 100%;}
+		.content { 
+			padding-right:280px;}
+		.article > p {
+			color: #303030;
+			line-height: 1.6em;
+		}
+		#footer {
+			padding: 10px; text-align: center; color: #999999; font-size: small;
+		}
+	</style>
+	<script> //tabBar 기능
+		function openPage(tabName, pageName, color) {
+		  var i, tabContent, pageContent, tablinks;
+		  tabContent = document.getElementsByClassName("tabContent");
+		  pageContent = document.getElementsByClassName("content");
+		  for (i = 0; i < tabContent.length; i++) {
+			tabContent[i].style.display = "none";
+			pageContent[i].style.display = "none";
+		  }
+		  /*tablinks = document.getElementsByClassName("tabLink");
+		  for (i = 0; i < tablinks.length; i++) {
+			tablinks[i].style.backgroundColor = "";
+		  }*/
+		  document.getElementById(tabName).style.display = "block";
+		  document.getElementById(pageName).style.display = "block";
+		  document.getElementById("contents_wrap").style.backgroundColor = color;
+
+		}
+		
+		document.getElementById("mainLink").click();
+	</script>
+	
+</head>
+<body onload="init()">
+	<div id="wrap">
+		<header id="header">
+			<div class="logo">
+				<a href="#"><img src="http://www.dalcomsoft.com/image/common/logo.png"></a>
+			</div>
+		</header>
+		<div id="banner"><a id="mainLink" class="tabLink" href="javascript:openPage('defaultOpen','pageDefault','#dcdceb')"><h1>DALCOM SOFT</h1></a></div>
+		<nav id="nav">
+			<ul class="left">
+				<li><a class="tabLink" href="javascript:openPage('A','pageA','#d2e1e6')">회사 소개</a></li>
+				<li><a class="tabLink" href="javascript:openPage('B','pageB','#d2dce6')">회사 연혁</a></li>
+				<li><a class="tabLink" href="javascript:openPage('C','pageC','#d2d2e6')">사업 현황</a></li>
+				<li><a class="tabLink" href="javascript:openPage('D','pageD','#dcd2e6')">회사 홍보</a></li>
+			</ul>
+			<ul class="right">
+				<li><a class="tabLink" href="javascript:openPage('F','pageF','#e6d2e6')">♪ Fanart</a></li>
+			</ul>
+		</nav>
+		<div id="contents_wrap">
+			<aside id="tabBar">
+				<div id="defaultOpen" class="tabContent" >
+					<em style="margin-left: 20px; line-height: 2em; color: #ffffff; text-shadow: 0 0 3px black;">
+						<br>" 음악과 게임을 결합해<br>&nbsp;&nbsp; 달콤하게, 부드럽게, "<br></em>
+				</div>
+				<div id="A" class="tabContent" style="display: none;" >
+					<ul><a href="#A1">회사 소개</a>
+						<li><a href="#A1">회사 소개</a></li> <!--(주)달콤소프트  대표 : 김현걸  주소 : 서울특별시 강남구 테헤란로 504 6층 (대치동, 해성빌딩)  TEL : 02-548-9531
+							통신판매번호 : 2014-서울강남-01266호  사업자등록번호 : 261-81-09357 이메일 : ipx@dalcomsoft.com-->
+						<li><a href="#A2">오시는 길</a></li>
+						<li><a href="#A3">CI 소개</a></li>
+						<li><a href="#A4">CONTACT</a></li>
+					</ul>
+				</div>
+				<div id="B" class="tabContent" style="display:none;">
+					<ul><a href="#B1">회사 연혁</a>
+						<li><a href="#B1">회사 연혁</a></li>
+						<li><a href="#B2">성장과 비전</a></li>
+					</ul>
+				</div>
+				<div id="C" class="tabContent" style="display: none;">
+					<ul><a href="#C1">사업 현황</a>
+						<li><a href="#C1">서비스 현황</a></li>
+						<li><a href="#C2">사업 성과</a></li>
+					</ul>
+				</div>
+				<div id="D" class="tabContent" style="display: none;">
+					<ul><a href="#D1">회사 홍보</a>
+						<li><a href="#D1">달콤 SNS</a></li>
+						<li><a href="#D2">홍보 영상</a></li>
+						<li><a href="#D3">대표 이미지</a></li>
+					</ul>
+				</div>
+				
+				<div id="F" class="tabContent" style="display: none;">
+					<ul><a href="#F1">Fanart</a>
+						<li><a href="#F1">팬아트 그리기</a></li>
+					</ul>
+				</div>
+			</aside>
+			<section id="section">
+				<div class="content" id="pageDefault" >
+					<article  class="article" >
+						<h1 style="margin:0; padding: 10px;">" EVERYONE HAS THEIR OWN STAR "</h1>
+						<hr>
+						<div style="padding : 120px 100px; text-align: center; background-image: url('https://cdn.pixabay.com/photo/2016/11/29/06/17/audience-1867754_960_720.jpg'); background-repeat: no-repeat;
+						background-position: center center;	background-size: cover; opacity: 0.8;" >
+							<span id="span1" style="font-size:40px; font-weight: bold;"> 당신의 스타를 모바일로 만나보세요! </span><br>
+							<span id="span2" style="font-size:20px; font-weight: bold;"> Meet your Star on your mobile devices! </span>
+						</div>
+						<script>
+							var span1 = document.getElementById("span1");
+							var span2 = document.getElementById("span2");
+							var timerID1 = setInterval("rotate(span1)", 600);
+							var timerID2 = setInterval("rotate(span2)", 500);
+
+							function rotate(span) {
+								var str=span.innerHTML;
+								var firstChar=str.substr(0,1);
+								var remains = str.substr(1, str.length-1);
+								str = remains+firstChar;
+								span.innerHTML = str;
+							}
+						</script>
+						<div>
+							<div style="display:inline-block; width: 49%; height: 200px; overflow: hidden;" >
+								<h4 style="background-color: rgb(250, 190, 190); padding-left:20px;line-height: 50px;">DALCOM News</h4>
+								<div style="white-space: nowrap; overflow: hidden; text-overflow:ellipsis; margin:10px;">
+									<a href="http://gamefocus.co.kr/detail.php?number=129846">ㆍ달콤소프트 'SuperStar ATEEZ' 일본 컴백 기념 업데이트 실시</a>
+								</div>
+								<div style="white-space: nowrap; overflow: hidden; text-overflow:ellipsis; margin:10px;">
+									<a href="https://kbench.com/?q=node/232848">ㆍ달콤소프트, 글로벌 K팝 리듬게임 SuperStar 시리즈 이벤트 진행</a>
+								</div>
+								<div style="white-space: nowrap; overflow: hidden; text-overflow:ellipsis; margin:10px;">
+									<a href="http://www.fintechpost.co.kr/news/articleView.html?idxno=149070#0AXD">ㆍK-팝과 손잡은 위믹스, 달콤소프트 게임을 블록체인으로</a>
+								</div>
+							</div>
+							<div style="display:inline-block; width: 49%; margin-left:10px; height: 200px; overflow: hidden; text-align: center;">
+								<h4 style="background-color: rgb(250, 190, 190); padding-left:20px;line-height: 50px; text-align: left;">DALCOM SNS</h4>
+								<a href="https://www.facebook.com/dalcomsoftinc/"><img width="80px" height="80px" src="https://postfiles.pstatic.net/MjAyMTA4MTlfMjEz/MDAxNjI5MzU5Mzg2MzQ0.w7U3xYui6WKGltH4zMskAf25U5D4BEUjd-rpfqFfvvUg.n6E3-BDBPqYLRPbOSHZUFNzeCZxMH3JwNpE80yVPMtEg.PNG.spacecw/%EB%8C%80%EC%A7%80_125_%EC%82%AC%EB%B3%B8_3.png?type=w966" alt="페이스북"/></a>
+								<a href="https://www.instagram.com/dalcomsoftinc/"><img width="80px" height="80px" src="https://postfiles.pstatic.net/MjAyMTA4MTlfMTYg/MDAxNjI5MzU5Mzg2MzM3.huDA6IW9mvUazCOzJ31VnsBEP3OM0SDQP_IDiPnIapIg.cFziWRdVOGfz5PGiwafw5gPRwZNASopRw-yXrVAD7r8g.PNG.spacecw/%EB%8C%80%EC%A7%80_125_%EC%82%AC%EB%B3%B8_2.png?type=w966" alt="인스타그램"/></a>
+								<a href="https://twitter.com/dalcomsoftinc"><img width="80px" height="80px" src="https://search.pstatic.net/common/?src=https%3A%2F%2Fditto-phinf.pstatic.net%2F20210723_31%2F1627021597323oRzlG_PNG%2F5d3c0da5322c633ba0b263bd9cf237dd.png" alt="트위터"/></a>
+								<a href="https://www.youtube.com/dalcomsoft"><img width="80px" height="80px" src="https://postfiles.pstatic.net/MjAyMTA4MTlfMjE3/MDAxNjI5MzYyMjMwOTQ4.9oODMAmJEup_qi3ME1W2DEaV-AD_x2XQKdjRnSDCW2kg.thhKmZzX0Hk6WbvSYtFDvps_501LDWEmHCZWxYTC_JUg.PNG.spacecw/174883.png?type=w966" alt="유튜브"/></a>
+							</div>
+						</div>
+					</article>
+				</div>
+				<div class="content" id="pageA" style="display: none;">
+					<article id="A1" class="article" >
+						<h1 style="margin:0; padding: 10px;">회사 소개</h1><hr>
+						<p> &nbsp;주식회사 달콤소프트는 2014년 3월 18일 설립된 기업으로, 아티스트 IP를 사용하여 SuperStar 시리즈를 서비스하고 있는 리듬게임 개발 및 운영사입니다.</p>
+						<p> &nbsp;달콤소프트의 대표적인 서비스 ‘SuperStar 시리즈’는 2014년부터 서비스를 시작하여 약 20개의 기획사, 400명 이상의 아티스트와 함께 성장해 왔습니다. SuperStar 시리즈는 4,000곡 이상의 노래와 15,000장 이상의 포토카드를 게임을 통해 팬에게 전달하는 “New Contents Delivery Platform”으로, 전세계 126개국 이상에서 7,700만건 이상의 누적 다운로드를 달성하며 K-POP Global Fandom User를 확보하고 있습니다.
+							SuperStar 시리즈는 미국, 일본, 싱가폴 등 해외 자회사를 통해 글로벌 아티스트와의 협업도 진행하고 있습니다. 달콤소프트는 SuperStar 시리즈를 “Every Artist”, “Every Country”, “Every Device”로 확장하여 팬과 아티스트가 소통할 수 있는 “Unique Global Fandom Network”로의 방향성을 가진 기업입니다.</p><br>
+					</article>
+					<article id="A2" class="article" >
+						<h1 style="margin:0; padding: 10px;">오시는 길</h1><hr>
+						<div style="display: inline-block;"><img width=400px; src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA5MjhfNjEg%2FMDAxNjMyODI4NzA0OTI5.uIdBEHQCH0k-Yt8iz_7BEpPfNdNFQwdseRvc4FMkqJIg.qpneJ9z-TpmIU05n75-EBnEWUtgYnMiMyg__nNh9vGIg.JPEG.smspkkb%2F%25C0%25CC%25B9%25CC%25C1%25F6_72.jpg&type=sc960_832" ></div>
+						<div style="float:right; margin: 140px 80px;"><h3> 위치: 서울 강남구 테헤란로 504, 6층</h3><p>- 2호선 삼성역 도보 7분거리</p><p>- 9호선 삼성중앙역 도보 10분거리</p></div><br>
+					</article>
+					<article id="A3" class="article" >
+						<h1 style="margin:0; padding: 10px;">CI 소개</h1><hr>
+						<div style="float: left; padding:20px; height: 300px; width: 260px;"><h3> 달콤소프트의 CI는 아이덴티티를 표현하기 위한 핵심디자인 요소이자 시각화하는 기준점입니다.</h3>
+							<p> 달콤소프트는 2014년 글로벌 시장을 주요 타겟으로 서울에 본사를 둔 게임 개발사입니다.
+							우리는 게임과 엔터테인먼트 산업을 연계하는 전문 개발사를 목표로 보다 새롭고,
+							보다 재미있는 게임을 위해 노력해 나가고 있습니다.</p></div>
+						<img style="border: 1px solid #424242;" src="http://www.dalcomsoft.com/_data/file/bbsData/33964c319e6f858f23dde1939966ffa5.png"><br>
+					</article>
+					<article id="A4" class="article" >
+						<h1 style="margin:0; padding: 10px;">CONTACT</h1><hr>
+						<table>
+							<tr><td>전화: </td><td>02-548-9531</td></tr>
+							<tr><td>이메일: </td><td><span>사업문의</span>biz@dalcomsoft.com</td></tr>
+							<tr><td> </td><td><span>채용문의</span>recruit@dalcomsoft.com</td></tr>
+							<tr><td>홈페이지: </td><td>http://www.dalcomsoft.com/</td></tr>
+						</table>
+						<br>
+					</article>
+				</div>
+				<div class="content" id="pageB" style="display: none;">
+					<article id="B1" class="article" >
+						<h1 style="margin:0; padding: 10px;">회사 연혁</h1><hr>
+						<p> 2022. 03. "SuperStar JYPNATION" AOS/iOS 일본 버전 런칭<br>
+							2022. 03. "SuperStar OH MY GIRL" AOS/IOS 런칭<br>
+							2022. 02. "SuperStar TEENAGE GIRLS" AOS/IOS 런칭<br><br>
+							
+							2021. 12. "SuperStar THE BOYS" AOS/iOS 런칭<br>
+							2021. 11. "SuperStar BRANDNEW" AOS/iOS 런칭<br>
+							2021. 08. "SuperStar ATEEZ" AOS/IOS 런칭<br>
+							2021. 05. "SuperStar P NATION" AOS/IOS 런칭<br>
+							2021. 04. "The SuperStar" AOS/iOS 런칭<br>
+							2021. 04. SuperStar KANGNAIEL AOS/iOS 런칭<br>
+							2021. 04. The SuperStar 글로벌 버전 AOS/iOS 런칭<br><br>
+							
+							2020. 12. SuperStar YG 일본 버전 런칭<br>
+							2020. 12. SuperStar FNC AOS/iOS 런칭<br>
+							2020. 11. SuperStar YG AOS/iOS 런칭<br>
+							2020. 06. SuperStar GFRIEND AOS/iOS 런칭<br>
+							2020. 04. SuperStar Woolim AOS/iOS 런칭<br><br>
+							
+							2019. 10. SuperStar Starship AOS/iOS 런칭<br>
+							2019. 05. SuperStar Pledis 일본 버전 런칭 (PONOS 퍼블리싱)<br>
+							2019. 01. SuperStar Pledis AOS/iOS 런칭<br><br>
+							
+							2018. 05. SuperStar BTS 일본 버전 런칭 (PONOS 퍼블리싱)<br>
+							2018. 01. SuperStar BTS AOS/iOS 런칭<br><br>
+							
+							2017. 08. SuperStar SMTOWN 일본 버전 런칭 (PONOS 퍼블리싱)<br>
+							2016. 07. SuperStar JYPNATION AOS/iOS 런칭<br>
+							2015. 08. 중국 전민천단 iOS 런칭 (카카오 퍼블리싱)<br>
+							2015. 07. 중국 전민천단 AOS 런칭 (추콩 퍼블리싱)<br>
+							2014. 09. SuperStar SMTOWN AOS/iOS 런칭<br>
+							2014. 03. 주식회사 달콤소프트 설립</p><br><br>
+					</article>
+					<article id="B2" class="article" >
+						<h1 style="margin:0; padding: 10px;">성장과 비전</h1><hr>
+						<p> SuperStar 시리즈는 구글이 선정한 2018 올해를 빛낸 인기 게임에 배틀그라운드에 이어 우수상에 선정되었으며 
+							2018년부터 2019년 6월까지의 기간 동안 누적 다운로드 3,000만 개, 신규유저수 2,000만 명을 넘어섰습니다. 
+							나날이 성장해가는 달콤소프트는 2014년 3월 설립된 이후 14명으로 시작한 회사가 직원이 65명으로 늘어나고, 
+							유저 역시 2000만 명으로 늘어날 만큼 비약적인 성장을 보이며 2019년 중소벤처기업부의 예비 유니콘기업으로도 선정되었습니다. </p>
+
+						<p>	달콤소프트의 성공 비결 첫째는 음악과 게임을 결합한 차별화된 서비스이며, 둘째는 팬인 유저들이 새롭고 즐거운 경험을 할 수 있도록 한 것입니다. 
+							상업게임이기에 경제적인 이득도 물론 중요했지만, 달콤소프트는 그보다 SuperStar 시리즈를 통해 팬인 유저들이 즐겁고 새로운 경험을 할 수 있도록 하는 데 집중했습니다. 
+							SuperStar 시리즈가 팬들에게 즐거운 경험이 된다면 유저들은 당연히 늘어날 것이고, 그 수익은 자연스럽게 아티스트에게 돌아가게 됩니다. 
+							아티스트가 더욱 존중받으면서 음악 활동을 할 수 있다는 점에서 SuperStar 시리즈의 성공은 달콤소프트만의 성공이 아니라 아티스트와 팬 모두에게 긍정적인 영향을 가져올 것입니다.</p>
+
+						<p> 달콤소프트는 SuperStar 시리즈에 해외의 수많은 아티스트와 계약해서 수많은 아티스트가 개별적으로 있는 플랫폼을 만들고 싶다는 비전을 세우고 있습니다. 
+							달콤소프트의 비전이 가능성이 있는 것은 음악이라는 훌륭한 매개체를 갖고 있고, 충성도 높은 팬들을 보유하고 있기 때문입니다.</p>
+							<br>
+					</article>
+				</div>
+				<div class="content" id="pageC" style="display: none;">
+					<article id="C1" class="article" >
+						<h1 style="margin:0; padding: 10px;">서비스 현황</h1><hr>
+						<p>달콤소프트의 대표적인 서비스 ‘SuperStar 시리즈’는 2014년부터 서비스를 시작하여 지금까지 총 18개의 시리즈가 제작되었으며 현재 14개의 시리즈가 서비스중입니다.</p>
+						<p>SuperStar 시리즈는 4,000곡 이상의 노래와 15,000장 이상의 포토카드를 게임을 통해 팬에게 전달하는 “New Contents Delivery Platform”으로, 전세계 126개국 이상에서 7,700만건 이상의 누적 다운로드를 달성하며 K-POP Global Fandom User를 확보하고 있습니다.
+							SuperStar 시리즈는 미국, 일본, 싱가폴 등 해외 자회사를 통해 글로벌 아티스트와의 협업도 진행하고 있습니다. </p>
+						<details>
+							<summary>현재 서비스 중인 시리즈</summary>
+							<ul>
+							<li>SuperStar SMTOWN</li>
+							<li>SuperStar JYPNATION</li>
+							<li>SuperStar STARSHIP</li>
+							<li>SuperStar WOOLLIM</li>
+							<li>SuperStar YG</li>
+							<li>SuperStar FNC</li>
+							<li>The SuperStar</li>
+							<li>SuperStar KANGDANIEL</li>
+							<li>SuperStar P NATION</li>
+							<li>SuperStar ATEEZ</li>
+							<li>SuperStar BRANDNEW</li>
+							<li>SuperStar THE BOYZ</li>
+							<li>SuperStar CLASS:y</li>
+							<li>SuperStar OH MY GIRL</li></ul></details>
+							<br>
+					</article>
+					<article id="C2" class="article" >
+						<h1 style="margin:0; padding: 10px;">사업 성과</h1><hr>
+						<p>달콤소프트는 회사를 설립한 첫 해인 2014년 8월 ㈜에스엠엔터테인먼트와 컨텐츠 제휴 및 계약을 맺은데 이어 
+							㈜제이와이피엔터테인먼트, ㈜빅히트엔터테인먼트, ㈜플레디스엔터테인먼트와 계약을 맺었습니다. 
+							그리고 소속 아티스트의 음원을 활용해 SuperStar SMTOWN, SuperStar JYPNATION, SuperStar BTS, SuperStar PLEDIS를 출시하였습니다.</p>
+
+						<p> 달콤소프트는 3년 간 매출성장세, 고용창출력, 투자유치액이 일반 기업보다 현저히 높은 수준에 이르렀으며, 
+							성장성, 혁신성을 고려하여 기업가치 1조 이상의 비상장 스타트업 기업으로 성장할 가능성이 높은 것으로 평가되는 예비 유니콘기업으로도 선정되었습니다. </p>
+							
+						<p>지난 해, 국내 아티스트뿐만 아니라 해외 아티스트와 계약해 SuperStar 시리즈를 출시하는 것을 목표로 하였으며, 미국 아티스트와 논의를 진행하여 2021년 4월 “The SuperStar”를 성공적으로 런칭하였습니다.
+							이는 Global Individual Platform을 목표로 하는 달콤소프트의 발전가능성을 나타내는 지표로 볼 수 있겠습니다.
+						</p><br>
+
+							
+					</article>
+				</div>
+				<div class="content" id="pageD" style="display: none;">
+					<article id="D1" class="article" >
+						<h1 style="margin:0; padding: 10px;">달콤 SNS</h1><hr>
+						<em> 달콤 SNS에서 달콤소프트의 최신 소식을 만나보세요!</em><br><br>
+						<div>
+							<details>
+								<summary>DALCOM SNS</summary>
+								<ul style="line-height: 50px; color:#bebeca">
+									<li>FACEBOOK &nbsp; <a href="https://www.facebook.com/dalcomsoftinc/"><img width="80px" height="80px" src="https://postfiles.pstatic.net/MjAyMTA4MTlfMjEz/MDAxNjI5MzU5Mzg2MzQ0.w7U3xYui6WKGltH4zMskAf25U5D4BEUjd-rpfqFfvvUg.n6E3-BDBPqYLRPbOSHZUFNzeCZxMH3JwNpE80yVPMtEg.PNG.spacecw/%EB%8C%80%EC%A7%80_125_%EC%82%AC%EB%B3%B8_3.png?type=w966" alt="페이스북"/></a></li>
+									<li>INSTAGRAM <a href="https://www.instagram.com/dalcomsoftinc/"><img width="80px" height="80px" src="https://postfiles.pstatic.net/MjAyMTA4MTlfMTYg/MDAxNjI5MzU5Mzg2MzM3.huDA6IW9mvUazCOzJ31VnsBEP3OM0SDQP_IDiPnIapIg.cFziWRdVOGfz5PGiwafw5gPRwZNASopRw-yXrVAD7r8g.PNG.spacecw/%EB%8C%80%EC%A7%80_125_%EC%82%AC%EB%B3%B8_2.png?type=w966" alt="인스타그램"/></a></li>
+									<li>TWITTER &nbsp;&nbsp; <a href="https://twitter.com/dalcomsoftinc"><img width="80px" height="80px" src="https://search.pstatic.net/common/?src=https%3A%2F%2Fditto-phinf.pstatic.net%2F20210723_31%2F1627021597323oRzlG_PNG%2F5d3c0da5322c633ba0b263bd9cf237dd.png" alt="트위터"/></a></li>
+									<li>YOUTUBE &nbsp;&nbsp; <a href="https://www.youtube.com/dalcomsoft"><img width="80px" height="80px" src="https://postfiles.pstatic.net/MjAyMTA4MTlfMjE3/MDAxNjI5MzYyMjMwOTQ4.9oODMAmJEup_qi3ME1W2DEaV-AD_x2XQKdjRnSDCW2kg.thhKmZzX0Hk6WbvSYtFDvps_501LDWEmHCZWxYTC_JUg.PNG.spacecw/174883.png?type=w966" alt="유튜브"/></a></li>
+								</ul>
+							</details>
+						</div>
+						<br>
+					</article>
+					<article id="D2" class="article" >
+						<h1 style="margin:0; padding: 10px;">홍보 영상</h1><hr>
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/QZq_2IJs_Y8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br><br>
+					</article>
+					<article id="D3" class="article" >
+						<h1 style="margin:0; padding: 10px;">대표 이미지</h1><hr>
+                        <div>
+                            <div>
+                                <img width="280" height="160" src="http://www.dalcomsoft.com/_data/file/goodsImages/13a7e7d29225031d9357a2daef2b5fab.png">
+                                <img width="280" height="160" src="http://www.dalcomsoft.com/_data/file/goodsImages/33cac9e6d69ec3ed57198e5f9e26588f.png">
+                                <img width="280" height="160" src="http://www.dalcomsoft.com/_data/file/goodsImages/1ea066d8e5e388244f04abc8d77039af.png">
+                            </div>
+                            <div>
+                                <img width="280" height="160" src="http://www.dalcomsoft.com/_data/file/goodsImages/56f5817f323890fb0dba5c13a226849a.png">
+                                <img width="280" height="160" src="http://www.dalcomsoft.com/_data/file/goodsImages/67851313eeaa3c3995e6a56e3742c60d.png">
+                                <img width="280" height="160" src="http://www.dalcomsoft.com/_data/file/goodsImages/75ddf562c5dd622b6b55ccc4db9cb6a1.png">
+                            </div>
+                            <div>
+                                <img width="280" height="160" src="http://www.dalcomsoft.com/_data/file/goodsImages/7cf22502ae14c9ca79021fa8825eb985.png">
+                                <img width="280" height="160" src="http://www.dalcomsoft.com/_data/file/goodsImages/0c0e448bd591c779641304923ec9b2a0.png">
+                                <img width="280" height="160" src="http://www.dalcomsoft.com/_data/file/goodsImages/10ac448f1062e7d6cda94d5b0884521e.png">
+                            </div>
+                            <div>
+                                <img width="280" height="160" src="http://www.dalcomsoft.com/_data/file/goodsImages/43fd6562acbdd018c39b780cd67b959e.png">
+                                <img width="280" height="160" src="http://www.dalcomsoft.com/_data/file/goodsImages/1b65d2e2c3496051a5555adf1af15db6.png">
+                                <img width="280" height="160" src="http://www.dalcomsoft.com/_data/file/goodsImages/2a5bb7ef0276992275ea69a22761a612.png">
+                            </div>
+                        </div>
+                        <br><br>
+					</article>
+				</div>
+				
+				<div class="content" id="pageF" style="display: none;">
+					<article id="F1" class="article" >
+						<h1 style="margin:0; padding: 10px;">마우스를 드래그하여 팬아트를 그려보세요!</h1><hr>
+						<canvas id="myCanvas" style="background-color: aliceblue;" width="900px" height="600px"></canvas><br>
+                        <span>선굵기 :</span><input type="number" id="lineWidth" value="3">
+                        <span>선 색 :</span><input type="color" id="color" value="#000000">
+                        <script>
+                            var canvas;
+                            var context;
+                            function init(){
+                                canvas = document.getElementById("myCanvas");
+                                context = canvas.getContext("2d");
+
+                                canvas.addEventListener("mousedown", function(e){down(e)}, false);
+                                canvas.addEventListener("mouseup", function(e){up(e)}, false);
+                                canvas.addEventListener("mousemove",  function(e) {move(e)}, false);
+                                canvas.addEventListener("mouseout", function(e){out(e)},false);
+                            }
+
+                            var startX=0, startY=0;
+                            var drawing=false;
+
+                            function down(e){
+                                startX=e.offsetX;
+                                startY=e.offsetY;
+
+                                var lineWidth =  document.getElementById("lineWidth").value;
+                                var strokeStyle = document.getElementById("color").value;
+                                context.lineWidth = lineWidth;
+                                context.strokeStyle = strokeStyle;
+
+                                drawing=true;
+
+                                
+                            }
+                            function up(e){
+                                drawing=false;
+                            }
+                            function out(e){
+                                drawing=false;
+                            }
+                            function move(e){
+                                if(!drawing) return;
+                                var curX=e.offsetX, curY=e.offsetY;
+                                context.beginPath();
+                                context.moveTo(startX,startY);
+                                context.lineTo(curX,curY);
+                                context.stroke();
+                                startX = curX;
+                                startY = curY;
+                            }
+
+                        </script>
+					</article>
+				</div>
+			</section>
+		</div>
+		
+		<footer id="footer">
+			<hr>
+			<br>
+			<address>class 01 at Web Programming | Name: Park Geonhee | e-mail: renot99@smail.kongju.ac.kr <br> Student ID Number: 201803231 | department: science of software | Kongju National University  </address>
+			<h4>㈜달콤소프트에 대해 소개하는 웹페이지 작성</h4>
+		</footer>
+	</div>
+</body>
+</html>
